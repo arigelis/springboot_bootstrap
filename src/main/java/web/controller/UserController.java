@@ -29,8 +29,12 @@ public class UserController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView allUsers() {
+
         List<User> listUser = userService.allUsers();
         ModelAndView mav = new ModelAndView("admin");
+        User currUser = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        mav.addObject("userName", currUser.getName());
+        mav.addObject("listRole", currUser.getRoles());
         mav.addObject("listUser", listUser);
         return mav;
     }

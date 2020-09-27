@@ -1,17 +1,38 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Signin Template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="signin.css" rel="stylesheet">
 </head>
-<body>
-<div>
-    <form method="post" action="/login">
-        <input name="j_username"/>
-        <input name="j_password"/>
-        <input type="submit"/>
-    </form>
-</div>
+<body class="text-center">
+<form class="col-lg-6 offset-lg-3" method="post" action="/login" width="40">
+    <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <div class="row justify-content-center">
+        <div>
+            <div>
+                <label for="login" class="sr-only">Login</label>
+                <input type="text" name="j_username" id="login" class="form-control" placeholder="Login" required
+                       autofocus>
+            </div>
+            <div>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="j_password" id="inputPassword" class="form-control" placeholder="Password"
+                       required>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </div>
+    </div>
+</form>
 </body>
 </html>

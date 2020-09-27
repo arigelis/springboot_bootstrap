@@ -79,22 +79,26 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        model.addAttribute("messages", messages);
-        return "user";
-    }
+//    @RequestMapping(value = "hello", method = RequestMethod.GET)
+//    public String printWelcome(ModelMap model) {
+//        List<String> messages = new ArrayList<>();
+//        messages.add("Hello!");
+//        model.addAttribute("messages", messages);
+//        return "user";
+//    }
 
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public String printWelcomeUser(ModelMap model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC-SECURITY application");
-        messages.add("5.2.0 version by sep'19 ");
-        model.addAttribute("messages", messages);
-        return "user";
+    @RequestMapping(value = "user2", method = RequestMethod.GET)
+    public ModelAndView printWelcomeUser() {
+        User currUser = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
+        List<User> listUser = new ArrayList<>();
+        listUser.add(currUser);
+        ModelAndView mav = new ModelAndView("user2");
+        mav.addObject("userName", currUser.getName());
+        mav.addObject("listRole", currUser.getRoles());
+        mav.addObject("listUser", listUser);
+        mav.addObject("allRoles", currUser.getRoles());
+        return mav;
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)

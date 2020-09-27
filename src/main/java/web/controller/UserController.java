@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import web.dao.RoleDao;
 import web.model.User;
 import web.service.UserService;
 
@@ -26,6 +27,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleDao roleDao;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ModelAndView allUsers() {
@@ -36,6 +39,7 @@ public class UserController {
         mav.addObject("userName", currUser.getName());
         mav.addObject("listRole", currUser.getRoles());
         mav.addObject("listUser", listUser);
+        mav.addObject("allRoles", roleDao.allRoles());
         return mav;
     }
 

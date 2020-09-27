@@ -9,27 +9,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <!--<ul class="navbar-nav mr-auto">-->
-                <!--<li class="nav-item active">-->
-                    <!--<a class="nav-link" href="#">Left</a>-->
-                <!--</li>-->
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link" href="//codeply.com">Codeply</a>-->
-                <!--</li>-->
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link" href="#">Link</a>-->
-                <!--</li>-->
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link" href="#">Link</a>-->
-                <!--</li>-->
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link" href="#">Link</a>-->
-                <!--</li>-->
-            <!--</ul>-->
             <div class="container p-3 my-3 bg-dark text-white">
                 User name: <span th:text="${userName}">Test</span>.
                 Roles:
@@ -38,73 +19,62 @@
                 </tr>
             </div>
         </div>
-        <!--<div class="mx-auto order-0">-->
-            <!--<a class="navbar-brand mx-auto" href="#">Navbar 2</a>-->
-            <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">-->
-                <!--<span class="navbar-toggler-icon"></span>-->
-            <!--</button>-->
-        <!--</div>-->
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link" href="#">Right</a>-->
-                <!--</li>-->
                 <li class="nav-item">
-                    <!--<a class="nav-link" href="#">Link</a>-->
                     <a href="#" th:href="@{/logout}">Log Out</a>
                 </li>
             </ul>
         </div>
     </nav>
-
-    <br/>
-    <br/>
-
-
-    <!--<div class="container p-3 my-3 bg-dark text-white">-->
-        <!--User name: <span th:text="${userName}">Test</span>.-->
-        <!--Roles:-->
-        <!--<tr th:each="role : ${listRole}">-->
-            <!--<td><span th:text="${role.role}"> Name</span></td>-->
-        <!--</tr>-->
-    <!--</div>-->
-
 </head>
 <body>
-<div align="center">
-    <h2>Admin panel</h2>
+<div class="row">
 
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/new">New user</a>
-        </li>
-    </ul>
+    <div class="col-xs-6 col-md-4">
+        <div class="column">
+            <ul class="list-group" th:each="role : ${allRoles}">
+                <li class="list-group-item" th:text="${role.role}">role</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-10 col-md-8">
+        <div align="left">
+            <h2>Admin panel</h2>
 
-    <!--<h3><a href="/new">New User</a></h3>-->
-    <table border="1" cellpadding="5">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Password</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${listUser}">
-            <td><span th:text="${user.id}"> Id </span></td>
-            <td><span th:text="${user.name}"> Name</span></td>
-            <td><span th:text="${user.password}"> Password</span></td>
-            <td>
-                <a th:href="@{'/edit?id=' + ${user.id}}">Edit</a>
-                <a th:href="@{'/delete?id=' + ${user.id}}">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/new">New user</a>
+                </li>
+            </ul>
+
+            <!--<h3><a href="/new">New User</a></h3>-->
+            <table class="table table-striped" border="1" cellpadding="5">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${listUser}">
+                    <td><span th:text="${user.id}"> Id </span></td>
+                    <td><span th:text="${user.name}"> Name</span></td>
+                    <td><span th:text="${user.password}"> Password</span></td>
+                    <td>
+                        <a class="btn btn-info" th:href="@{'/edit?id=' + ${user.id}}" role="button">Edit</a>
+                        <a class="btn btn-danger" th:href="@{'/delete?id=' + ${user.id}}" role="button">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 

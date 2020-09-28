@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+        "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -8,29 +8,51 @@
 <body>
 <div align="center">
     <h2>Edit user</h2>
-    <form:form action="edit" method="post" modelAttribute="user">
+    <form:form action="save" method="post" modelAttribute="user">
         <table border="0" cellpadding="5">
             <tr>
-                <td>ID: </td>
-                <td>${user.id}
-                    <form:hidden path="id"/>
+                <td>ID: <span name="id" th:text="${user.id}"/></td>
+            </tr>
+            <tr>
+                <td>name:</td>
+                <td>
+                    <input type="text" th:name="name" th:value="${user.name}"/>
                 </td>
             </tr>
             <tr>
-                <td>name: </td>
-                <td><form:input path="name" /></td>
+                <td>password:</td>
+                <td>
+                    <input type="text" th:name="password" th:value="${user.password}"/>
+                </td>
             </tr>
-            <tr>
-                <td>password: </td>
-                <td><form:input path="password" /></td>
-            </tr>
-            <%--<tr>--%>
-                <%--<td>age: </td>--%>
-                <%--<td><form:input path="age" /></td>--%>
-            <%--</tr>--%>
-            <tr>
-                <td colspan="2"><input type="submit" value="Save"></td>
-            </tr>
+
+            <!--<form th:action="@{/save}" method="post">-->
+                <!--<input type="text" th:name="password"/>-->
+
+            <!--</form>-->
+            <form th:action="@{/save}" method="post" th:object="${user}">
+                <input type="submit"/>
+            </form>
+            <!--<tr>-->
+                <!--&lt;!&ndash;<td colspan="2"><input type="submit" value="Save"></td>&ndash;&gt;-->
+                <!--<button type="submit" th:value="#{Save}">Sign in</button>-->
+            <!--</tr>-->
+
+            <!--<form th:action="@{save}" method="post">-->
+                <!--&lt;!&ndash;<input type="hidden" th:value="*{user.name}" th:field="*{name}" hidden/>&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="hidden" th:value="*{authRequestAttr1}" th:field="*{authRequestAttr1}" />&ndash;&gt;-->
+                <!--<input type="text" th:value="*{password}" th:field="*{user.password}" hidden/>-->
+
+                <!--&lt;!&ndash;<input type="hidden" name="name" value="${user.name}">&ndash;&gt;-->
+
+                <!--&lt;!&ndash; Add the rest of authRequest attributes here in the same fashion &ndash;&gt;-->
+
+                <!--<button type="submit"></button>-->
+            <!--</form>-->
+
+            <!--<form class="button" th:action="@{save}" method="POST">-->
+                <!--<input type="submit" value="Save"/>-->
+            <!--</form>-->
         </table>
     </form:form>
 </div>

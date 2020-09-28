@@ -8,32 +8,42 @@
 <body>
 <div align="center">
     <h2>Edit user</h2>
-    <form:form action="save" method="post" th:modelAttribute="user">
+    <form th:action="@{/edit}" th:object="${user}" method="post">
         <table border="0" cellpadding="5">
             <tr>
+                <input type="hidden" th:field="*{id}" />
                 <td>ID: <span name="id" th:text="${user.id}"/></td>
             </tr>
             <tr>
                 <td>name:</td>
                 <td>
-                    <input type="text" th:name="name" th:value="${user.name}"/>
+                    <p><input type="text" th:field="*{name}" id="name" value="name" required>
                 </td>
             </tr>
             <tr>
                 <td>password:</td>
                 <td>
-                    <input type="text" th:name="password" th:value="${user.password}"/>
+                    <input type="text" th:field="*{password}" id="password" value="password" required>
                 </td>
             </tr>
-            <!--<form th:action="@{/save}" method="post" th:object="${user}">-->
-                <!--<input type="submit"/>-->
-            <!--</form>-->
-            <form th:action="@{/edit/(id=${user.id})}" method="post" th:object="${user}">
-                <input type="submit"/>
-            </form>
         </table>
+        <input type="submit" value="edit">
+
         <!--<button type="submit" th:action="@{/save}">Go</button>-->
-    </form:form>
+    </form>
+
+    <!--<form th:action="@{/save}" th:object="${user}" method="post">-->
+        <!--<p><input type="hidden" th:field="*{id}" /></p>-->
+
+        <!--&lt;!&ndash;<p><label for="name">name</label></p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p><input type="text" th:field="*{name}" id="name" value="name" required></p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<p><label for="password">password</label></p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p><input type="text" th:field="*{password}" id="password" value="password" required></p>&ndash;&gt;-->
+        <!--<p>-->
+            <!--<input type="submit" value="save">-->
+        <!--</p>-->
+    <!--</form>-->
 </div>
 <a href="#" th:href="@{/logout}">Log Out</a>
 </body>

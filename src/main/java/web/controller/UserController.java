@@ -40,6 +40,8 @@ public class UserController {
         mav.addObject("listRole", currUser.getRoles());
         mav.addObject("listUser", listUser);
         mav.addObject("allRoles", roleDao.allRoles());
+        User user = new User();
+        mav.addObject("user", user);
         return mav;
     }
 
@@ -56,10 +58,11 @@ public class UserController {
         return "redirect:/";
     }
 
+
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editUser(@ModelAttribute("user") User user) {
         userService.edit(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @RequestMapping("/edit")

@@ -5,7 +5,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,12 +44,12 @@ public class UserController {
         return mav;
     }
 
-    @RequestMapping("/new")
-    public String newUserForm(Map<String, Object> model) {
-        User user = new User();
-        model.put("user", user);
-        return "new_user";
-    }
+//    @RequestMapping("/new")
+//    public String newUserForm(Map<String, Object> model) {
+//        User user = new User();
+//        model.put("user", user);
+//        return "new_user";
+//    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") User user) {
@@ -82,13 +81,13 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "user2", method = RequestMethod.GET)
+    @RequestMapping(value = "user", method = RequestMethod.GET)
     public ModelAndView printWelcomeUser() {
         User currUser = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
         List<User> listUser = new ArrayList<>();
         listUser.add(currUser);
-        ModelAndView mav = new ModelAndView("user2");
+        ModelAndView mav = new ModelAndView("user");
         mav.addObject("userName", currUser.getName());
         mav.addObject("listUser", listUser);
         mav.addObject("allRoles", currUser.getRoles());

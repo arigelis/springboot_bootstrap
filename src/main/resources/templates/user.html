@@ -1,23 +1,74 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
 <html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <div class="container p-3 my-3 bg-dark text-white">
+                User name: <span th:text="${userName}">Test</span>.
+                Roles:
+                <tr th:each="role : ${listRole}">
+                    <td><span th:text="${role.role}"> Name</span></td>
+                </tr>
+            </div>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#" th:href="@{/logout}">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </head>
 <body>
-<div>
-    <!--<th:block th:each="msg : ${messages}">-->
-        <!--<h1 th:text="${msg}"></h1>-->
-    <!--</th:block>-->
-    <!--/*@thymesVar id="user" type="web.model.User"*/-->
-    <form action="#" th:action="@{/user}" th:object="${user}" method="post">
+<div class="row">
 
-        <p>Id: <input type="text" th:field="*{name}" /></p>
-        <!--<p>Message: <input type="text" th:field="*{content}" /></p>-->
-        <!--<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>-->
-    </form>
+    <div class="col-xs-6 col-md-4">
+        <div class="column">
+            <ul class="list-group" th:each="role : ${allRoles}">
+                <li class="list-group-item" th:text="${role.role}">role</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-10 col-md-8">
+        <div align="left">
+            <h2>User panel</h2>
+            <table class="table table-striped" border="1" cellpadding="5">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${listUser}">
+                    <td><span th:text="${user.id}"> Id </span></td>
+                    <td><span th:text="${user.name}"> Name</span></td>
+                    <td><span th:text="${user.password}"> Password</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<a href="#" th:href="@{/logout}">Log Out</a>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

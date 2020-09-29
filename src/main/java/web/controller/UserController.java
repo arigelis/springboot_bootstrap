@@ -82,14 +82,6 @@ public class UserController {
         return "redirect:/";
     }
 
-//    @RequestMapping(value = "hello", method = RequestMethod.GET)
-//    public String printWelcome(ModelMap model) {
-//        List<String> messages = new ArrayList<>();
-//        messages.add("Hello!");
-//        model.addAttribute("messages", messages);
-//        return "user";
-//    }
-
     @RequestMapping(value = "user2", method = RequestMethod.GET)
     public ModelAndView printWelcomeUser() {
         User currUser = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());

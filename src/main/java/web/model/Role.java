@@ -6,8 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-// Этот класс реализует интерфейс GrantedAuthority, в котором необходимо переопределить только один метод getAuthority() (возвращает имя роли).
-// Имя роли должно соответствовать шаблону: «ROLE_ИМЯ», например, ROLE_USER.
 @Entity
 @Table(name = "roles_sec")
 public class Role implements GrantedAuthority, Serializable {
@@ -28,7 +26,6 @@ public class Role implements GrantedAuthority, Serializable {
 
 
     public Role() {
-        System.out.println("111");
     }
 
     public Role(String[] a) {

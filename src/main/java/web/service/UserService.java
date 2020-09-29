@@ -3,6 +3,7 @@ package web.service;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import web.model.User;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 public interface UserService extends UserDetailsService {

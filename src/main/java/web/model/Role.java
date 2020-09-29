@@ -18,17 +18,21 @@ public class Role implements GrantedAuthority, Serializable {
     @Column(name = "role_name")
     private String role;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(name="role_id"),
-            inverseJoinColumns = @JoinColumn(name="user_id")
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> users;
 
 
     public Role() {
+        System.out.println("111");
+    }
 
+    public Role(String[] a) {
+        System.out.println(a);
     }
 
     public Role(Integer id, String role) {

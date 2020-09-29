@@ -55,7 +55,7 @@ public class UserController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") User user) {
         userService.add(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
 
@@ -98,7 +98,6 @@ public class UserController {
         listUser.add(currUser);
         ModelAndView mav = new ModelAndView("user2");
         mav.addObject("userName", currUser.getName());
-        mav.addObject("listRole", currUser.getRoles());
         mav.addObject("listUser", listUser);
         mav.addObject("allRoles", currUser.getRoles());
         return mav;

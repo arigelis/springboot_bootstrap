@@ -5,10 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.dao.RoleDao;
 import web.model.Role;
@@ -59,8 +56,10 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editUser(@ModelAttribute("user") User user) {
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+    public String editUser(@PathVariable("id") long id, @RequestParam("editRoles") String editRoles,
+                           @ModelAttribute("user") User user) {
+        user.setRoles(getSetRole(editRoles));
         userService.edit(user);
         return "redirect:/admin";
     }
@@ -74,12 +73,12 @@ public class UserController {
         return mav;
     }
 
-    @RequestMapping("/delete")
-    public String deleteUserForm(@RequestParam long id) {
+    @RequestMapping("/delete/{id}")
+    public String deleteUserForm(@PathVariable("id") long id) {
         User user = new User();
         user.setId(id);
         userService.delete(user);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @RequestMapping(value = "user", method = RequestMethod.GET)

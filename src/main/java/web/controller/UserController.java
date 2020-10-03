@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import web.dao.RoleDao;
+import web.model.Role;
 import web.model.User;
 import web.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -52,7 +51,9 @@ public class UserController {
 //    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveUser(@ModelAttribute("user") User user) {
+    public String saveUser(@ModelAttribute("user") User user,
+                           @RequestParam("userRoles") String userRole) {
+        user.setRoles(getSetRole(userRole));
         userService.add(user);
         return "redirect:/admin";
     }
@@ -106,5 +107,19 @@ public class UserController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/";
+    }
+
+    Set<Role> getSetRole(String roles) {
+        Set<Role> roleSet = new HashSet<>();
+        if (roles.contains("test")) {
+            roleSet.add(userService.getRoleByName("test"));
+        }
+        if (roles.contains("admin")) {
+            roleSet.add(userService.getRoleByName("admin"));
+        }
+        if(roles.contains("user")){
+            roleSet.add(userService.getRoleByName("user"));
+        }
+        return roleSet;
     }
 }

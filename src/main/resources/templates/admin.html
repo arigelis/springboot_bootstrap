@@ -45,17 +45,17 @@
             <ul class="nav nav-tabs">
                 <!-- Первая вкладка (активная) -->
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#description">Active</a>
+                    <a class="nav-link active" data-toggle="tab" href="#main">Active</a>
                 </li>
                 <!-- Вторая вкладка -->
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#characteristics">New user</a>
+                    <a class="nav-link" data-toggle="tab" href="#new">New user</a>
                 </li>
             </ul>
 
             <div class="tab-content">
                 <!-- Первый блок (он отображается по умолчанию, т.к. имеет классы show и active) -->
-                <div class="tab-pane fade show active" id="description">
+                <div class="tab-pane fade show active" id="main">
                     <table class="table table-striped" border="1" cellpadding="5">
                         <thead>
                         <tr>
@@ -85,54 +85,88 @@
                     </table>
                 </div>
                 <!-- Второй блок -->
-                <div class="tab-pane fade" id="characteristics">
+                <div class="tab-pane fade" id="new">
+                    <!--<div class="form justify-content-center mx-auto col-6">-->
+                        <!--<form th:action="@{/save}" method="post">-->
 
-                    <div class="form justify-content-center mx-auto col-6">
-                        <form th:action="@{/save}" method="post">
-
-                            <div class="form-group">
-                                <label for="nameEditUser">First
-                                    name</label>
-                                <div>
-                                    <input type="text"
-                                           name="firstNameEdit"
-                                           class="form-control"
-                                           id="nameEditUser"
-                                           th:value="${user.name}">
+                            <!--<div class="form-group">-->
+                                <!--<label for="nameEditUser">First-->
+                                    <!--name</label>-->
+                                <!--<div>-->
+                                    <!--<input type="text"-->
+                                           <!--name="firstNameEdit"-->
+                                           <!--class="form-control"-->
+                                           <!--id="nameEditUser"-->
+                                           <!--th:value="${user.name}">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="passwordEditUser1">Password</label>-->
+                                <!--<div>-->
+                                    <!--<input type="password"-->
+                                           <!--name="passwordEdit"-->
+                                           <!--class="form-control"-->
+                                           <!--id="passwordEditUser1">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="roleEditUser1">Role</label>-->
+                                <!--<div>-->
+                                    <!--<select name="editRole" size="2"-->
+                                            <!--multiple-->
+                                            <!--class="form-control"-->
+                                            <!--id="roleEditUser1">-->
+                                        <!--<option th:each="role : ${allRoles}"-->
+                                                <!--th:value="${role}"-->
+                                                <!--th:text="${role.role}"></option>-->
+                                    <!--</select>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="modal-footer">-->
+                                <!--<button type="button"-->
+                                        <!--class="btn btn-secondary"-->
+                                        <!--data-dismiss="modal">Close-->
+                                <!--</button>-->
+                                <!--<button type="submit"-->
+                                        <!--class="btn btn-primary">Save-->
+                                <!--</button>-->
+                            <!--</div>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                    <div class="card-body text-center">
+                        <div class="form justify-content-center mx-auto col-md-3">
+                            <form th:action="@{/save}" th:object="${user}" th:method="post">
+                                <div class="form-group">
+                                    <label><strong>First name</strong></label>
+                                    <input type="text" class="form-control" placeholder="Name" name="name">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="passwordEditUser1">Password</label>
-                                <div>
-                                    <input type="password"
-                                           name="passwordEdit"
-                                           class="form-control"
-                                           id="passwordEditUser1">
+                                <!--<div class="form-group">-->
+                                    <!--<label><strong>Last name</strong></label>-->
+                                    <!--<input type="text" class="form-control" placeholder="Last name" name="lastName">-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label><strong>Age</strong></label>-->
+                                    <!--<input type="text" class="form-control" placeholder="Age" name="age">-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
+                                    <!--<label><strong>Username</strong></label>-->
+                                    <!--<input type="text" class="form-control" placeholder="Username" name="username">-->
+                                <!--</div>-->
+                                <div class="form-group">
+                                    <label><strong>Password</strong></label>
+                                    <input type="password" class="form-control" placeholder="Password" name="password">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="roleEditUser1">Role</label>
-                                <div>
-                                    <select name="editRole" size="2"
-                                            multiple
-                                            class="form-control"
-                                            id="roleEditUser1">
-                                        <option th:each="role : ${allRoles}"
-                                                th:value="${role}"
-                                                th:text="${role.role}"></option>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect"><strong>Role</strong></label>
+                                    <select multiple class="form-control" id="exampleFormControlSelect" size="3" name="userRoles">
+                                        <option th:value="${allRoles[0].role}" selected="selected" th:text="${allRoles[0].role}"></option>
+                                        <option th:value="${allRoles[1].role}"th:text="${allRoles[1].role}" ></option>
+                                        <!--<option th:value="${roles[2].role}"th:text="${roles[2].role}" ></option>-->
                                     </select>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button"
-                                        class="btn btn-secondary"
-                                        data-dismiss="modal">Close
-                                </button>
-                                <button type="submit"
-                                        class="btn btn-primary">Save
-                                </button>
-                            </div>
-                        </form>
+                                <button type="submit" class="btn btn-success">Add new user</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

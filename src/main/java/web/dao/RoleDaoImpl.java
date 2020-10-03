@@ -5,6 +5,7 @@ import web.model.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -41,6 +42,20 @@ public class RoleDaoImpl implements RoleDao {
     @Transactional
     public Role getById(long id) {
         return entityManager.find(Role.class, id);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Role getRoleByName(String name) {
+        Role role = null;
+        try {
+            Query query = entityManager.createQuery("from Role r where r.role=:name");
+            query.setParameter("name", name);
+            role = (Role) query.getSingleResult();
+        } catch (Exception e) {
+            System.out.println("Роли с таким именем не существует!");
+        }
+        return role;
     }
 }
 

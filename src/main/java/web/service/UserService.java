@@ -1,6 +1,7 @@
 package web.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
+import web.model.Role;
 import web.model.User;
 
 import javax.annotation.PostConstruct;
@@ -16,4 +17,6 @@ public interface UserService extends UserDetailsService {
     void edit(User user);
 
     User getById(long id);
+
+    Role getRoleByName(String name);
 }

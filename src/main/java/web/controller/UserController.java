@@ -40,13 +40,6 @@ public class UserController {
         return mav;
     }
 
-//    @RequestMapping("/new")
-//    public String newUserForm(Map<String, Object> model) {
-//        User user = new User();
-//        model.put("user", user);
-//        return "new_user";
-//    }
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") User user,
                            @RequestParam("userRoles") String userRole) {
@@ -62,15 +55,6 @@ public class UserController {
         user.setRoles(getSetRole(editRoles));
         userService.edit(user);
         return "redirect:/admin";
-    }
-
-    @RequestMapping("/edit")
-    public ModelAndView editUserForm(@RequestParam long id) {
-        ModelAndView mav = new ModelAndView("edit_user");
-        User user = userService.getById(id);
-        mav.addObject("user", user);
-
-        return mav;
     }
 
     @RequestMapping("/delete/{id}")

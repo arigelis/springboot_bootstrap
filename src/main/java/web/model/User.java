@@ -8,9 +8,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
 
-// Для того, чтобы в дальнейшим использовать класс User в Spring Security, он должен реализовывать интерфейс UserDetails.
-// UserDetails можно представить, как адаптер между БД пользователей и тем что требуется Spring Security внутри SecurityContextHolder
-
 @Entity
 @Table(name = "users_sec")
 public class User implements UserDetails, Serializable {
